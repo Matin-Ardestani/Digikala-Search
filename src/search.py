@@ -196,6 +196,49 @@ class Ui_SearchWindow(object):
         req = requests.get(url)
         
         soup = BeautifulSoup(req.text , 'html.parser')
-        titiles = soup.find_all('a' , attrs={'class':'js-product-url'})
-        for title in titiles:
-            print(title.text)
+
+
+        # Getting titles -> returns "titles" list
+        titles_container = soup.find_all('div' , attrs={'class':'c-product-box__content--row'})
+        titles_container = list(titles_container)
+        titles = []
+        for tit in titles_container:
+            titles_soup = BeautifulSoup(str(tit) , 'html.parser')
+            title = (titles_soup.find('a' , attrs={'class':'js-product-url'}))
+            title = (str(title.text)).strip()
+            titles.append(title)
+        
+
+        # Getting images urls -> returns "images_urls" list
+        images_container = soup.find_all('a' , attrs={'class':'c-product-box__img c-promotion-box__image js-url js-product-item js-product-url'})
+        images_container = list(images_container)
+        images_urls = []
+        for image in images_container:
+            image_soup = BeautifulSoup(str(image) , 'html.parser')
+            image = image_soup.find('img')
+            image = image['src']
+            images_urls.append(image)
+
+
+        # Getting prices -> returns prices
+        price_container = soup.find_all('div' , attrs={'class':'c-price__value c-price__value--plp js-plp-product-card-price'})
+        price_container = list(price_container)
+
+        prices = []
+
+        for price in price_container:
+            price_soup = BeautifulSoup(str(price) , 'html.parser')
+            the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
+
+            this = (str(the_price.text)).strip()
+            this = this.replace(' ' , '')
+            this = this.replace('\n' , ' ')
+
+            prices.append(this)
+
+
+
+        counter = -1
+        for this in titles:
+            counter += 1
+            print(this , prices[counter] , images_urls[counter])
