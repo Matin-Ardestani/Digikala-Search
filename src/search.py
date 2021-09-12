@@ -197,6 +197,9 @@ class Ui_SearchWindow(object):
 
         self.search_counter += 1 # for delete last products
 
+        if self.search_counter > 1:
+            self.deleteItems()
+
         # Add product to the show list
         def addItem(title , image_url , price):
             self.product = QtWidgets.QFrame(self.scrollAreaWidgetContents)
@@ -248,8 +251,6 @@ class Ui_SearchWindow(object):
             self.product_price.setText(price)
 
 
-        def deleteItem():
-            self.product.
 
         url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
         self.search.setText('')
@@ -261,48 +262,75 @@ class Ui_SearchWindow(object):
         # Getting titles -> returns "titles" list
         titles_container = soup.find_all('div' , attrs={'class':'c-product-box__content--row'})
         titles_container = list(titles_container)
-        titles = []
+        self.titles = []
         for tit in titles_container:
             titles_soup = BeautifulSoup(str(tit) , 'html.parser')
             title = (titles_soup.find('a' , attrs={'class':'js-product-url'}))
             title = (str(title.text)).strip()
-            titles.append(title)
+            self.titles.append(title)
         
 
         # Getting images urls -> returns "images_urls" list
         images_container = soup.find_all('a' , attrs={'class':'c-product-box__img c-promotion-box__image js-url js-product-item js-product-url'})
         images_container = list(images_container)
-        images_urls = []
+        self.images_urls = []
         for image in images_container:
             image_soup = BeautifulSoup(str(image) , 'html.parser')
             image = image_soup.find('img')
             image = image['src']
-            images_urls.append(image)
+            self.images_urls.append(image)
 
 
         # Getting prices -> returns prices
         price_container = soup.find_all('div' , attrs={'class':'c-price__value c-price__value--plp js-plp-product-card-price'})
         price_container = list(price_container)
 
-        prices = []
+        self.prices = []
 
-        for price in price_container:
-            price_soup = BeautifulSoup(str(price) , 'html.parser')
+        for self.price in price_container:
+            price_soup = BeautifulSoup(str(self.price) , 'html.parser')
             the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
 
             this = (str(the_price.text)).strip()
             this = this.replace(' ' , '')
             this = this.replace('\n' , ' ')
 
-            prices.append(this)
+            self.prices.append(this)
 
 
-        if len(prices) < len(titles):
-            difference = (len(titles)) - (len(prices))
+        if len(self.prices) < len(self.titles):
+            difference = (len(self.titles)) - (len(self.prices))
             for i in range(0 , difference):
-                prices.append('ناموجود')
+                self.prices.append('ناموجود')
 
         counter = -1
-        for this in titles:
+        for this in self.titles:
             counter += 1
-            addItem(titles[counter] , images_urls[counter] , prices[counter])
+            addItem(self.titles[counter] , self.images_urls[counter] , self.prices[counter])
+
+
+    def deleteItems(self):
+        self.titles = []
+        self.images_urls = []
+        self.prices = []
+        self.scrollArea.setParent(None)
+        self.scrollArea.deleteLater()
+
+        self.scrollArea = QtWidgets.QScrollArea(self.frame_2)
+        self.scrollArea.setStyleSheet("QScrollBar {\n"
+"    background: #c2c2c2;\n"
+"}")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 433, 363))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
+
+        
