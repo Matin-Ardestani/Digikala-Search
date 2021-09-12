@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'UI.ui'
+# Form implementation generated from reading ui file 'UI (copy).ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -9,13 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import requests
-from bs4 import BeautifulSoup
-import urllib.request
 
-class Ui_SearchWindow(object):
 
-    #==================================Designer codes=====================================
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(450, 550)
@@ -48,9 +44,9 @@ class Ui_SearchWindow(object):
         self.btn_min.setText("")
         self.btn_min.setObjectName("btn_min")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(0, 10, 380, 40))
+        self.label.setGeometry(QtCore.QRect(0, 3, 380, 40))
         font = QtGui.QFont()
-        font.setFamily("BNazanin")
+        font.setFamily("Ubuntu")
         font.setPointSize(16)
         font.setBold(False)
         font.setWeight(50)
@@ -62,8 +58,8 @@ class Ui_SearchWindow(object):
         self.search = QtWidgets.QLineEdit(self.centralwidget)
         self.search.setGeometry(QtCore.QRect(53, 60, 381, 35))
         font = QtGui.QFont()
-        font.setFamily("BNazanin")
-        font.setPointSize(11)
+        font.setFamily("Ubuntu")
+        font.setPointSize(9)
         self.search.setFont(font)
         self.search.setLayoutDirection(QtCore.Qt.RightToLeft)
         self.search.setStyleSheet("background-color: #B7D5D3;\n"
@@ -74,7 +70,7 @@ class Ui_SearchWindow(object):
         self.search_btn = QtWidgets.QPushButton(self.centralwidget)
         self.search_btn.setGeometry(QtCore.QRect(10, 60, 35, 35))
         font = QtGui.QFont()
-        font.setFamily("BNazanin")
+        font.setFamily("Ubuntu")
         font.setPointSize(9)
         self.search_btn.setFont(font)
         self.search_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -83,7 +79,7 @@ class Ui_SearchWindow(object):
 "color: #010107;")
         self.search_btn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/search-icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../img/search-icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.search_btn.setIcon(icon1)
         self.search_btn.setIconSize(QtCore.QSize(20, 20))
         self.search_btn.setObjectName("search_btn")
@@ -162,6 +158,43 @@ class Ui_SearchWindow(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
+
+        self.product = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.product.sizePolicy().hasHeightForWidth())
+        self.product.setSizePolicy(sizePolicy)
+        self.product.setMinimumSize(QtCore.QSize(0, 120))
+        self.product.setStyleSheet("background-color: #fff;")
+        self.product.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.product.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.product.setObjectName("product")
+        self.product_photo = QtWidgets.QLabel(self.product)
+        self.product_photo.setGeometry(QtCore.QRect(10, 10, 101, 101))
+        self.product_photo.setText("")
+        self.product_photo.setPixmap(QtGui.QPixmap("../img/test.jpg"))
+        self.product_photo.setScaledContents(True)
+        self.product_photo.setObjectName("product_photo")
+        self.product_title = QtWidgets.QLabel(self.product)
+        self.product_title.setGeometry(QtCore.QRect(137, 19, 261, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.product_title.setFont(font)
+        self.product_title.setStyleSheet("color: #010107;")
+        self.product_title.setWordWrap(True)
+        self.product_title.setObjectName("product_title")
+        self.product_price = QtWidgets.QLabel(self.product)
+        self.product_price.setGeometry(QtCore.QRect(257, 66, 141, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
+        self.product_price.setFont(font)
+        self.product_price.setStyleSheet("color: #010107;")
+        self.product_price.setWordWrap(True)
+        self.product_price.setObjectName("product_price")
+        self.verticalLayout_2.addWidget(self.product)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -171,138 +204,24 @@ class Ui_SearchWindow(object):
         self.btn_min.clicked.connect(MainWindow.showMinimized)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
-        #=======================================My codes=========================
-        self.search.setFocus(True)
-        self.search_btn.clicked.connect(self.searching)
-        self.search.returnPressed.connect(self.searching)
-
-        self.search_counter = 0
-
-
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Digikala Search"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "جستوجوگر دیجیکالا"))
         self.search.setPlaceholderText(_translate("MainWindow", "جستوجو در دیجیکالا..."))
         self.most_expenvsive.setText(_translate("MainWindow", "گران ترین"))
         self.most_cheap.setText(_translate("MainWindow", "ارزان ترین"))
         self.most_new.setText(_translate("MainWindow", "جدیدترین"))
         self.most_related.setText(_translate("MainWindow", "مرتبط ترین"))
+        # self.product_title.setText(_translate("MainWindow", "لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E"))
+        # self.product_price.setText(_translate("MainWindow", " ۹,۱۹۵,۰۰۰ تومان"))
 
 
-    #====================================My Functions==============================
-    def searching(self):
-
-        self.search_counter += 1 # for delete last products
-
-        # Add product to the show list
-        def addItem(title , image_url , price):
-            self.product = QtWidgets.QFrame(self.scrollAreaWidgetContents)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.product.sizePolicy().hasHeightForWidth())
-            self.product.setSizePolicy(sizePolicy)
-            self.product.setMinimumSize(QtCore.QSize(0, 120))
-            self.product.setStyleSheet("background-color: #fff;")
-            self.product.setFrameShape(QtWidgets.QFrame.StyledPanel)
-            self.product.setFrameShadow(QtWidgets.QFrame.Raised)
-            self.product.setObjectName("product")
-            self.product_photo = QtWidgets.QLabel(self.product)
-            self.product_photo.setGeometry(QtCore.QRect(10, 10, 101, 101))
-            self.product_photo.setText("")
-
-            photo_data = urllib.request.urlopen(image_url).read()
-            self.pic = QtGui.QPixmap()
-            self.pic.loadFromData(photo_data)
-
-            self.product_photo.setPixmap(self.pic)
-            self.product_photo.setScaledContents(True)
-            self.product_photo.setObjectName("product_photo")
-            self.product_title = QtWidgets.QLabel(self.product)
-            self.product_title.setGeometry(QtCore.QRect(137, 19, 261, 31))
-            font = QtGui.QFont()
-            font.setFamily("BNazanin")
-            font.setPointSize(9)
-            self.product_title.setFont(font)
-            self.product_title.setStyleSheet("color: #010107;")
-            self.product_title.setWordWrap(True)
-            self.product_title.setObjectName("product_title")
-            self.product_price = QtWidgets.QLabel(self.product)
-            self.product_price.setGeometry(QtCore.QRect(257, 66, 141, 20))
-            font = QtGui.QFont()
-            font.setFamily("BNazanin")
-            font.setPointSize(12)
-            font.setBold(False)
-            font.setWeight(50)
-            self.product_price.setFont(font)
-            self.product_price.setStyleSheet("color: #010107;")
-            self.product_price.setWordWrap(True)
-            self.product_price.setObjectName("product_price")
-            self.verticalLayout_2.addWidget(self.product)
-            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-            self.verticalLayout.addWidget(self.scrollArea)
-            self.product_title.setText(title)
-            self.product_price.setText(price)
-
-
-        def deleteItem():
-            self.product.
-
-        url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
-        self.search.setText('')
-        req = requests.get(url)
-        
-        soup = BeautifulSoup(req.text , 'html.parser')
-
-
-        # Getting titles -> returns "titles" list
-        titles_container = soup.find_all('div' , attrs={'class':'c-product-box__content--row'})
-        titles_container = list(titles_container)
-        titles = []
-        for tit in titles_container:
-            titles_soup = BeautifulSoup(str(tit) , 'html.parser')
-            title = (titles_soup.find('a' , attrs={'class':'js-product-url'}))
-            title = (str(title.text)).strip()
-            titles.append(title)
-        
-
-        # Getting images urls -> returns "images_urls" list
-        images_container = soup.find_all('a' , attrs={'class':'c-product-box__img c-promotion-box__image js-url js-product-item js-product-url'})
-        images_container = list(images_container)
-        images_urls = []
-        for image in images_container:
-            image_soup = BeautifulSoup(str(image) , 'html.parser')
-            image = image_soup.find('img')
-            image = image['src']
-            images_urls.append(image)
-
-
-        # Getting prices -> returns prices
-        price_container = soup.find_all('div' , attrs={'class':'c-price__value c-price__value--plp js-plp-product-card-price'})
-        price_container = list(price_container)
-
-        prices = []
-
-        for price in price_container:
-            price_soup = BeautifulSoup(str(price) , 'html.parser')
-            the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
-
-            this = (str(the_price.text)).strip()
-            this = this.replace(' ' , '')
-            this = this.replace('\n' , ' ')
-
-            prices.append(this)
-
-
-        if len(prices) < len(titles):
-            difference = (len(titles)) - (len(prices))
-            for i in range(0 , difference):
-                prices.append('ناموجود')
-
-        counter = -1
-        for this in titles:
-            counter += 1
-            addItem(titles[counter] , images_urls[counter] , prices[counter])
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
