@@ -37,7 +37,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../img/close.png</normaloff>../img/close.png</iconset>
+      <normaloff>../../../.designer/img/close.png</normaloff>../../../.designer/img/close.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -66,7 +66,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../img/minimize.png</normaloff>../img/minimize.png</iconset>
+      <normaloff>../../../.designer/img/minimize.png</normaloff>../../../.designer/img/minimize.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -145,7 +145,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../img/search.png</normaloff>../img/search.png</iconset>
+      <normaloff>../../../.designer/img/search.png</normaloff>../../../.designer/img/search.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -188,305 +188,11 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>308</width>
-          <height>516</height>
+          <width>322</width>
+          <height>342</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QFrame" name="product_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>120</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #fff;</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <widget class="QLabel" name="product_photo_3">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>101</width>
-              <height>101</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../img/test.jpg</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_title_3">
-            <property name="geometry">
-             <rect>
-              <x>107</x>
-              <y>19</y>
-              <width>175</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>9</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string>لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_price_3">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>75</y>
-              <width>141</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>12</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string> ۹,۱۹۵,۰۰۰ تومان</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="product_2">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>120</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #fff;</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <widget class="QLabel" name="product_photo_2">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>101</width>
-              <height>101</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../img/test.jpg</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_title_2">
-            <property name="geometry">
-             <rect>
-              <x>107</x>
-              <y>19</y>
-              <width>175</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>9</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string>لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_price_2">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>75</y>
-              <width>141</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>12</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string> ۹,۱۹۵,۰۰۰ تومان</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="product_4">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>120</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: #fff;</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <widget class="QLabel" name="product_photo_4">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>101</width>
-              <height>101</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../img/test.jpg</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_title_4">
-            <property name="geometry">
-             <rect>
-              <x>107</x>
-              <y>19</y>
-              <width>175</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>9</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string>لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QLabel" name="product_price_4">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>75</y>
-              <width>141</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>B Nazanin</family>
-              <pointsize>12</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: #010107;</string>
-            </property>
-            <property name="text">
-             <string> ۹,۱۹۵,۰۰۰ تومان</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </widget>
-         </item>
          <item>
           <widget class="QFrame" name="product">
            <property name="sizePolicy">
@@ -523,7 +229,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>../img/test.jpg</pixmap>
+             <pixmap>../../../.designer/img/test.jpg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -628,7 +334,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #886BC0; border-radius: 5px;</string>
+      <string notr="true">background-color: #886BC0; border-radius: 5px; color: #030107;</string>
      </property>
      <property name="text">
       <string>مرتبط ترین</string>
@@ -653,7 +359,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px; color: #030107;</string>
      </property>
      <property name="text">
       <string>پرفروش ترین</string>
@@ -678,7 +384,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px; color: #030107;</string>
      </property>
      <property name="text">
       <string>گران ترین</string>
@@ -703,7 +409,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px; color: #030107;</string>
      </property>
      <property name="text">
       <string>ارزان ترین</string>
@@ -728,10 +434,80 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px; color: #030107;</string>
      </property>
      <property name="text">
       <string>جدید ترین</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="former">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>320</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>B Nazanin</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../.designer/img/right-row.png</normaloff>../../../.designer/img/right-row.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="next">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>320</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>B Nazanin</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #C8B6EC; border-radius: 5px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../.designer/img/left-row.png</normaloff>../../../.designer/img/left-row.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
     </widget>
    </widget>
