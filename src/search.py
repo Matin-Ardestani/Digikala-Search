@@ -174,8 +174,13 @@ class Ui_SearchWindow(object):
 
         #=======================================My codes=========================
         self.search.setFocus(True)
-        self.search_btn.clicked.connect(self.searching)
-        self.search.returnPressed.connect(self.searching)
+        self.search_btn.clicked.connect(lambda: self.searching('relate'))
+        self.search.returnPressed.connect(lambda: self.searching('relate'))
+
+        self.most_expenvsive.clicked.connect(lambda: self.searching('expensive'))
+        self.most_cheap.clicked.connect(lambda: self.searching('cheap'))
+        self.most_new.clicked.connect(lambda: self.searching('new'))
+        self.most_related.clicked.connect(lambda: self.searching('relate'))
 
         self.search_counter = 0
 
@@ -193,7 +198,7 @@ class Ui_SearchWindow(object):
 
 
     #====================================My Functions==============================
-    def searching(self):
+    def searching(self , btn):
 
         self.search_counter += 1 # for delete last products
 
@@ -251,11 +256,37 @@ class Ui_SearchWindow(object):
             self.product_price.setText(price)
 
 
+        # create url
+        if btn == 'relate':
+            url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
+            self.most_related.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
+            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_expenvsive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
 
-        url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
-        self.search.setText('')
-        req = requests.get(url)
+        elif btn == 'expensive':
+            url = 'https://www.digikala.com/search/?q=%s&sortby=21' % self.search.text()
+            self.most_expenvsive.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
+            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+
+        elif btn == 'cheap':
+            url = 'https://www.digikala.com/search/?q=%s&sortby=20' % self.search.text()
+            self.most_cheap.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
+            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_expenvsive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+
+        elif btn == 'new':
+            url = 'https://www.digikala.com/search/?q=%s&sortby=1' % self.search.text()
+            self.most_new.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
+            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_expenvsive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
         
+        
+        req = requests.get(url)
         soup = BeautifulSoup(req.text , 'html.parser')
 
 
@@ -288,46 +319,39 @@ class Ui_SearchWindow(object):
         self.prices = []
 
 
-        for self.price in price_container:
-            price_soup = BeautifulSoup(str(self.price) , 'html.parser')
+        for price in price_container:
+            price_soup = BeautifulSoup(str(price) , 'html.parser')
             the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
 
-            this = (str(the_price.text)).strip()
-            this = this.replace(' ' , '')
-            this = this.replace('\n' , ' ')
+            if the_price != None:
+                this = (str(the_price.text)).strip()
+                this = this.replace(' ' , '')
+                this = this.replace('\n' , ' ')
+                self.prices.append(this)
+            else:
+                self.prices.append('ناموجود')
 
-            self.prices.append(this)
-
-
-        counter = 1
-        for this in self.prices:
-            print(this , counter)
-            counter += 1
         
         if (len(self.prices)) > 36:
             diff = abs((len(self.prices)) - 36)
 
             for this in range(0 , diff):
                 self.prices.pop(0)
-                print('this:' , this)
-
-        counter = 1
-        for this in self.prices:
-            print(this , counter)
-            counter += 1
-
 
         if len(self.prices) < len(self.titles):
             difference = (len(self.titles)) - (len(self.prices))
             for i in range(0 , difference):
                 self.prices.append('ناموجود')
 
+        # add items
         counter = -1
         for this in self.titles:
             counter += 1
             addItem(self.titles[counter] , self.images_urls[counter] , self.prices[counter])
 
 
+
+    # delete all items for new search
     def deleteItems(self):
         self.titles = []
         self.images_urls = []
