@@ -282,10 +282,11 @@ class Ui_SearchWindow(object):
 
 
         # Getting prices -> returns prices
-        price_container = soup.find_all('div' , attrs={'class':'c-price__value c-price__value--plp js-plp-product-card-price'})
+        price_container = soup.find_all('div' , attrs={'class':'c-product-box'})
         price_container = list(price_container)
 
         self.prices = []
+
 
         for self.price in price_container:
             price_soup = BeautifulSoup(str(self.price) , 'html.parser')
@@ -296,6 +297,24 @@ class Ui_SearchWindow(object):
             this = this.replace('\n' , ' ')
 
             self.prices.append(this)
+
+
+        counter = 1
+        for this in self.prices:
+            print(this , counter)
+            counter += 1
+        
+        if (len(self.prices)) > 36:
+            diff = abs((len(self.prices)) - 36)
+
+            for this in range(0 , diff):
+                self.prices.pop(0)
+                print('this:' , this)
+
+        counter = 1
+        for this in self.prices:
+            print(this , counter)
+            counter += 1
 
 
         if len(self.prices) < len(self.titles):
@@ -317,9 +336,7 @@ class Ui_SearchWindow(object):
         self.scrollArea.deleteLater()
 
         self.scrollArea = QtWidgets.QScrollArea(self.frame_2)
-        self.scrollArea.setStyleSheet("QScrollBar {\n"
-"    background: #c2c2c2;\n"
-"}")
+        self.scrollArea.setStyleSheet("QScrollBar { background: #c2c2c2;\n}")
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
