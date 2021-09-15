@@ -23,6 +23,8 @@ class Ui_SearchWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(500, 476)
         MainWindow.setStyleSheet("background: #F4F4F4; border-radius: 15px;")
+        MainWindow.setWindowTitle('Didikala search')
+        MainWindow.setWindowIcon(QtGui.QIcon('%s/img/logo.ico' % path))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.btn_close = QtWidgets.QPushButton(self.centralwidget)
