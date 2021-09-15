@@ -226,208 +226,219 @@ class Ui_SearchWindow(object):
     #====================================My Functions==============================
     def searching(self , btn):
 
-        self.search_counter += 1 # for delete last products
 
-        if self.search_counter > 1:
-            self.deleteItems()
+        try:
+            self.search_counter += 1 # for delete last products
 
-        # Add product to the show list
-        def addItem(title , image_url , price):
-            self.product = QtWidgets.QFrame(self.scrollAreaWidgetContents)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.product.sizePolicy().hasHeightForWidth())
-            self.product.setSizePolicy(sizePolicy)
-            self.product.setMinimumSize(QtCore.QSize(0, 120))
-            self.product.setStyleSheet("background-color: #fff;")
-            self.product.setFrameShape(QtWidgets.QFrame.StyledPanel)
-            self.product.setFrameShadow(QtWidgets.QFrame.Raised)
-            self.product.setObjectName("product")
-            self.product_photo = QtWidgets.QLabel(self.product)
-            self.product_photo.setGeometry(QtCore.QRect(10, 10, 101, 101))
-            self.product_photo.setText("")
+            if self.search_counter > 1:
+                self.deleteItems()
 
-            data = urllib.request.urlopen(image_url).read()
-            self.pic = QtGui.QPixmap()
-            self.pic.loadFromData(data)
+            # Add product to the show list
+            def addItem(title , image_url , price):
+                self.product = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+                sizePolicy.setHorizontalStretch(0)
+                sizePolicy.setVerticalStretch(0)
+                sizePolicy.setHeightForWidth(self.product.sizePolicy().hasHeightForWidth())
+                self.product.setSizePolicy(sizePolicy)
+                self.product.setMinimumSize(QtCore.QSize(0, 120))
+                self.product.setStyleSheet("background-color: #fff;")
+                self.product.setFrameShape(QtWidgets.QFrame.StyledPanel)
+                self.product.setFrameShadow(QtWidgets.QFrame.Raised)
+                self.product.setObjectName("product")
+                self.product_photo = QtWidgets.QLabel(self.product)
+                self.product_photo.setGeometry(QtCore.QRect(10, 10, 101, 101))
+                self.product_photo.setText("")
 
-            self.product_photo.setPixmap(self.pic)
-            self.product_photo.setScaledContents(True)
-            self.product_photo.setObjectName("product_photo")
-            self.product_title = QtWidgets.QLabel(self.product)
-            self.product_title.setGeometry(QtCore.QRect(107, 19, 175, 31))
-            font = QtGui.QFont()
-            font.setFamily("B Nazanin")
-            font.setPointSize(9)
-            font.setBold(False)
-            font.setWeight(50)
-            self.product_title.setFont(font)
-            self.product_title.setStyleSheet("color: #010107;")
-            self.product_title.setWordWrap(True)
-            self.product_title.setObjectName("product_title")
-            self.product_price = QtWidgets.QLabel(self.product)
-            self.product_price.setGeometry(QtCore.QRect(140, 75, 141, 20))
-            font = QtGui.QFont()
-            font.setFamily("B Nazanin")
-            font.setPointSize(12)
-            font.setBold(False)
-            font.setWeight(50)
-            self.product_price.setFont(font)
-            self.product_price.setStyleSheet("color: #010107;")
-            self.product_price.setWordWrap(True)
-            self.product_price.setObjectName("product_price")
-            self.verticalLayout_2.addWidget(self.product)
-            self.product_title.setText(title)
-            self.product_price.setText(price)
-            self.product_title.setText(title)
-            self.product_price.setText(price)
+                data = urllib.request.urlopen(image_url).read()
+                self.pic = QtGui.QPixmap()
+                self.pic.loadFromData(data)
+
+                self.product_photo.setPixmap(self.pic)
+                self.product_photo.setScaledContents(True)
+                self.product_photo.setObjectName("product_photo")
+                self.product_title = QtWidgets.QLabel(self.product)
+                self.product_title.setGeometry(QtCore.QRect(107, 19, 175, 31))
+                font = QtGui.QFont()
+                font.setFamily("B Nazanin")
+                font.setPointSize(9)
+                font.setBold(False)
+                font.setWeight(50)
+                self.product_title.setFont(font)
+                self.product_title.setStyleSheet("color: #010107;")
+                self.product_title.setWordWrap(True)
+                self.product_title.setObjectName("product_title")
+                self.product_price = QtWidgets.QLabel(self.product)
+                self.product_price.setGeometry(QtCore.QRect(140, 75, 141, 20))
+                font = QtGui.QFont()
+                font.setFamily("B Nazanin")
+                font.setPointSize(12)
+                font.setBold(False)
+                font.setWeight(50)
+                self.product_price.setFont(font)
+                self.product_price.setStyleSheet("color: #010107;")
+                self.product_price.setWordWrap(True)
+                self.product_price.setObjectName("product_price")
+                self.verticalLayout_2.addWidget(self.product)
+                self.product_title.setText(title)
+                self.product_price.setText(price)
+                self.product_title.setText(title)
+                self.product_price.setText(price)
 
 
-        # create url and set buttons color
-        if btn == 'relate':
-            url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
-            self.most_related.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
-            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.category = 'relate'
-            self.page_counter = 1
-            self.next.setEnabled(True)
-
-        elif btn == 'expensive':
-            url = 'https://www.digikala.com/search/?q=%s&sortby=21' % self.search.text()
-            self.most_expensive.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
-            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.category = 'expensive'
-            self.page_counter = 1
-            self.next.setEnabled(False)
-            self.former.setEnabled(False)
-
-        elif btn == 'cheap':
-            url = 'https://www.digikala.com/search/?q=%s&sortby=20' % self.search.text()
-            self.most_cheap.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
-            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.category = 'cheap'
-            self.page_counter = 1
-            self.next.setEnabled(False)
-            self.former.setEnabled(False)
-
-        elif btn == 'new':
-            url = 'https://www.digikala.com/search/?q=%s&sortby=1' % self.search.text()
-            self.most_new.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
-            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.category = 'new'
-            self.page_counter = 1
-            self.next.setEnabled(False)
-            self.former.setEnabled(False)
-        
-        elif btn == 'sale':
-            url = 'https://www.digikala.com/search/?q=%s&sortby=7' % self.search.text()
-            self.most_sale.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
-            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
-            self.category = 'sale'
-            self.page_counter = 1
-            self.next.setEnabled(False)
-            self.former.setEnabled(False)
-
-        elif btn == 'next':
-            if self.page_counter <= 4:
-                url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter + 1))
-                self.page_counter += 1
-                self.former.setEnabled(True)
-                if self.page_counter == 4:
-                    self.next.setEnabled(False)
-
-        elif btn == 'former':
-            if self.page_counter >= 1:
-                url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter - 1))
-                self.page_counter -= 1
+            # create url and set buttons color
+            if btn == 'relate':
+                url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
+                self.most_related.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+                self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.category = 'relate'
+                self.page_counter = 1
                 self.next.setEnabled(True)
-                if self.page_counter == 1:
-                    self.former.setEnabled(False)
+
+            elif btn == 'expensive':
+                url = 'https://www.digikala.com/search/?q=%s&sortby=21' % self.search.text()
+                self.most_expensive.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+                self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.category = 'expensive'
+                self.page_counter = 1
+                self.next.setEnabled(False)
+                self.former.setEnabled(False)
+
+            elif btn == 'cheap':
+                url = 'https://www.digikala.com/search/?q=%s&sortby=20' % self.search.text()
+                self.most_cheap.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+                self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.category = 'cheap'
+                self.page_counter = 1
+                self.next.setEnabled(False)
+                self.former.setEnabled(False)
+
+            elif btn == 'new':
+                url = 'https://www.digikala.com/search/?q=%s&sortby=1' % self.search.text()
+                self.most_new.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+                self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.category = 'new'
+                self.page_counter = 1
+                self.next.setEnabled(False)
+                self.former.setEnabled(False)
+            
+            elif btn == 'sale':
+                url = 'https://www.digikala.com/search/?q=%s&sortby=7' % self.search.text()
+                self.most_sale.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+                self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+                self.category = 'sale'
+                self.page_counter = 1
+                self.next.setEnabled(False)
+                self.former.setEnabled(False)
+
+            elif btn == 'next':
+                if self.page_counter <= 4:
+                    url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter + 1))
+                    self.page_counter += 1
+                    self.former.setEnabled(True)
+                    if self.page_counter == 4:
+                        self.next.setEnabled(False)
+
+            elif btn == 'former':
+                if self.page_counter >= 1:
+                    url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter - 1))
+                    self.page_counter -= 1
+                    self.next.setEnabled(True)
+                    if self.page_counter == 1:
+                        self.former.setEnabled(False)
 
 
-        # show change pages buttons
-        self.next.show()
-        self.former.show()
+            # show change pages buttons
+            self.next.show()
+            self.former.show()
 
-        # main request
-        req = requests.get(url)
-        soup = BeautifulSoup(req.text , 'html.parser')
-
-
-        # Getting titles -> returns "titles" list
-        titles_container = soup.find_all('div' , attrs={'class':'c-product-box__content--row'})
-        titles_container = list(titles_container)
-        self.titles = []
-        for tit in titles_container:
-            titles_soup = BeautifulSoup(str(tit) , 'html.parser')
-            title = (titles_soup.find('a' , attrs={'class':'js-product-url'}))
-            title = (str(title.text)).strip()
-            self.titles.append(title)
-        
-
-        # Getting images urls -> returns "images_urls" list
-        images_container = soup.find_all('a' , attrs={'class':'c-product-box__img c-promotion-box__image js-url js-product-item js-product-url'})
-        images_container = list(images_container)
-        self.images_urls = []
-        for image in images_container:
-            image_soup = BeautifulSoup(str(image) , 'html.parser')
-            image = image_soup.find('img')
-            image = image['src']
-            self.images_urls.append(image)
+            # main request
+            req = requests.get(url)
+            soup = BeautifulSoup(req.text , 'html.parser')
 
 
-        # Getting prices -> returns prices
-        price_container = soup.find_all('div' , attrs={'class':'c-product-box'})
-        price_container = list(price_container)
+            # Getting titles -> returns "titles" list
+            titles_container = soup.find_all('div' , attrs={'class':'c-product-box__content--row'})
+            titles_container = list(titles_container)
+            self.titles = []
+            for tit in titles_container:
+                titles_soup = BeautifulSoup(str(tit) , 'html.parser')
+                title = (titles_soup.find('a' , attrs={'class':'js-product-url'}))
+                title = (str(title.text)).strip()
+                self.titles.append(title)
+            
 
-        self.prices = []
+            # Getting images urls -> returns "images_urls" list
+            images_container = soup.find_all('a' , attrs={'class':'c-product-box__img c-promotion-box__image js-url js-product-item js-product-url'})
+            images_container = list(images_container)
+            self.images_urls = []
+            for image in images_container:
+                image_soup = BeautifulSoup(str(image) , 'html.parser')
+                image = image_soup.find('img')
+                image = image['src']
+                self.images_urls.append(image)
 
 
-        for price in price_container:
-            price_soup = BeautifulSoup(str(price) , 'html.parser')
-            the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
+            # Getting prices -> returns prices
+            price_container = soup.find_all('div' , attrs={'class':'c-product-box'})
+            price_container = list(price_container)
 
-            if the_price != None:
-                this = (str(the_price.text)).strip()
-                this = this.replace(' ' , '')
-                this = this.replace('\n' , ' ')
-                self.prices.append(this)
-            else:
-                self.prices.append('ناموجود')
+            self.prices = []
 
-        
-        if (len(self.prices)) > 36:
-            diff = abs((len(self.prices)) - 36)
 
-            for this in range(0 , diff):
-                self.prices.pop(0)
+            for price in price_container:
+                price_soup = BeautifulSoup(str(price) , 'html.parser')
+                the_price = price_soup.find('div' , attrs={'class':'c-price__value-wrapper'})
 
-        if len(self.prices) < len(self.titles):
-            difference = (len(self.titles)) - (len(self.prices))
-            for i in range(0 , difference):
-                self.prices.append('ناموجود')
+                if the_price != None:
+                    this = (str(the_price.text)).strip()
+                    this = this.replace(' ' , '')
+                    this = this.replace('\n' , ' ')
+                    self.prices.append(this)
+                else:
+                    self.prices.append('ناموجود')
 
-        # add items
-        counter = -1
-        for this in self.titles:
-            counter += 1
-            addItem(self.titles[counter] , self.images_urls[counter] , self.prices[counter])
+            
+            if (len(self.prices)) > 36:
+                diff = abs((len(self.prices)) - 36)
+
+                for this in range(0 , diff):
+                    self.prices.pop(0)
+
+            if len(self.prices) < len(self.titles):
+                difference = (len(self.titles)) - (len(self.prices))
+                for i in range(0 , difference):
+                    self.prices.append('ناموجود')
+
+            # add items
+            counter = -1
+            for this in self.titles:
+                counter += 1
+                addItem(self.titles[counter] , self.images_urls[counter] , self.prices[counter])
+
+        except:
+            msg_net = QtWidgets.QMessageBox()
+            msg_net.setIcon(QtWidgets.QMessageBox.Warning)
+            msg_net.setText("Poor internet connection                     ")
+            msg_net.setWindowTitle("Alarm")
+            msg_net.setStandardButtons(QtWidgets.QMessageBox.Ok )
+            msg_net.buttonClicked.connect(lambda: msg_net.close())
+            msg_net.exec_()
 
 
 
