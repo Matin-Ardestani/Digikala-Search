@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 from bs4 import BeautifulSoup
 import urllib.request
+from pathlib import Path
+
+path = str(Path.cwd())
 
 class Ui_SearchWindow(object):
 
@@ -28,7 +31,7 @@ class Ui_SearchWindow(object):
         self.btn_close.setStyleSheet("background: none;")
         self.btn_close.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("%s/img/close.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_close.setIcon(icon)
         self.btn_close.setIconSize(QtCore.QSize(18, 18))
         self.btn_close.setObjectName("btn_close")
@@ -38,7 +41,7 @@ class Ui_SearchWindow(object):
         self.btn_min.setStyleSheet("background: none;")
         self.btn_min.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/minimize.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("%s/img/minimize.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.btn_min.setIcon(icon1)
         self.btn_min.setIconSize(QtCore.QSize(18, 18))
         self.btn_min.setObjectName("btn_min")
@@ -68,7 +71,7 @@ class Ui_SearchWindow(object):
         self.search_btn.setStyleSheet("background-color: #DCDCDC; border-radius: 5px;")
         self.search_btn.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("%s/img/search.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.search_btn.setIcon(icon2)
         self.search_btn.setIconSize(QtCore.QSize(25, 25))
         self.search_btn.setObjectName("search_btn")
@@ -154,7 +157,7 @@ class Ui_SearchWindow(object):
         self.former.setStyleSheet("background-color: #C8B6EC; border-radius: 5px;")
         self.former.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/right-row.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap("%s/img/right-row.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.former.setIcon(icon3)
         self.former.setIconSize(QtCore.QSize(25, 25))
         self.former.setObjectName("former")
@@ -168,7 +171,7 @@ class Ui_SearchWindow(object):
         self.next.setStyleSheet("background-color: #C8B6EC; border-radius: 5px;")
         self.next.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("/home/matin/Desktop/Digikala-Search/img/left-row.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap("%s/img/left-row.png" % path), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.next.setIcon(icon4)
         self.next.setIconSize(QtCore.QSize(25, 25))
         self.next.setObjectName("next")
