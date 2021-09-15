@@ -181,6 +181,7 @@ class Ui_SearchWindow(object):
 
 
         #=======================================My codes=========================
+        # call searching methode
         self.search.setFocus(True)
         self.search_btn.clicked.connect(lambda: self.searching('relate'))
         self.search.returnPressed.connect(lambda: self.searching('relate'))
@@ -189,6 +190,17 @@ class Ui_SearchWindow(object):
         self.most_cheap.clicked.connect(lambda: self.searching('cheap'))
         self.most_new.clicked.connect(lambda: self.searching('new'))
         self.most_related.clicked.connect(lambda: self.searching('relate'))
+        self.most_sale.clicked.connect(lambda: self.searching('sale'))
+
+        self.category = 'relate'
+
+        # call chage page methode
+        self.former.setEnabled(False)
+        self.next.hide()
+        self.former.hide()
+        self.next.clicked.connect(lambda: self.searching('next'))
+        self.former.clicked.connect(lambda: self.searching('former'))
+        self.page_counter = 1
 
         self.search_counter = 0
 
@@ -267,36 +279,88 @@ class Ui_SearchWindow(object):
             self.product_price.setText(price)
 
 
-        # create url
+        # create url and set buttons color
         if btn == 'relate':
             url = 'https://www.digikala.com/search/?q=%s' % self.search.text()
-            self.most_related.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
-            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_expensive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_related.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.category = 'relate'
+            self.page_counter = 1
+            self.next.setEnabled(True)
 
         elif btn == 'expensive':
             url = 'https://www.digikala.com/search/?q=%s&sortby=21' % self.search.text()
-            self.most_expensive.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
-            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_expensive.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.category = 'expensive'
+            self.page_counter = 1
+            self.next.setEnabled(False)
+            self.former.setEnabled(False)
 
         elif btn == 'cheap':
             url = 'https://www.digikala.com/search/?q=%s&sortby=20' % self.search.text()
-            self.most_cheap.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
-            self.most_new.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_expensive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_cheap.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.category = 'cheap'
+            self.page_counter = 1
+            self.next.setEnabled(False)
+            self.former.setEnabled(False)
 
         elif btn == 'new':
             url = 'https://www.digikala.com/search/?q=%s&sortby=1' % self.search.text()
-            self.most_new.setStyleSheet('background-color:#559995;color:#010107;border-radius:5px;padding:8px;')
-            self.most_related.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_cheap.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
-            self.most_expensive.setStyleSheet('background-color:#B7D5D3;color:#010107;border-radius:5px;padding:8px;')
+            self.most_new.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_sale.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.category = 'new'
+            self.page_counter = 1
+            self.next.setEnabled(False)
+            self.former.setEnabled(False)
         
-        
+        elif btn == 'sale':
+            url = 'https://www.digikala.com/search/?q=%s&sortby=7' % self.search.text()
+            self.most_sale.setStyleSheet('background-color: #886BC0; border-radius: 5px; color: #030107;')
+            self.most_related.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_cheap.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_expensive.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.most_new.setStyleSheet('background-color: #C8B6EC; border-radius: 5px; color: #030107;')
+            self.category = 'sale'
+            self.page_counter = 1
+            self.next.setEnabled(False)
+            self.former.setEnabled(False)
+
+        elif btn == 'next':
+            if self.page_counter <= 4:
+                url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter + 1))
+                self.page_counter += 1
+                self.former.setEnabled(True)
+                if self.page_counter == 4:
+                    self.next.setEnabled(False)
+
+        elif btn == 'former':
+            if self.page_counter >= 1:
+                url = 'https://www.digikala.com/search/?q=%s&pageno=%s&sortby=22' % (self.search.text() , (self.page_counter - 1))
+                self.page_counter -= 1
+                self.next.setEnabled(True)
+                if self.page_counter == 1:
+                    self.former.setEnabled(False)
+
+
+        # show change pages buttons
+        self.next.show()
+        self.former.show()
+
+        # main request
         req = requests.get(url)
         soup = BeautifulSoup(req.text , 'html.parser')
 
@@ -384,5 +448,3 @@ class Ui_SearchWindow(object):
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
-
-        
