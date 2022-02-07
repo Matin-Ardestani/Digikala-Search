@@ -6,8 +6,6 @@ Find your desired product in [Digikala](https://digikala.com) with this program.
 # About me
 Full name: Matin Ardestani
 
-Age: 14
-
 Location: Tehran, Iran
 
 More Information: [Info](https://bioly.io/MatinArdestani)
