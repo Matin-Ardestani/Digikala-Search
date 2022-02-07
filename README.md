@@ -1,5 +1,5 @@
 # Digikala Search
-Find your desired product in [Digikala](https://digikala.com) using this app.
+Find your desired product in [Digikala](https://digikala.com) with this program.
 
 با این برنامه محصول مورد نظر خود را در [دیجیکالا](https://digikala.com) پیدا کنید.
 
